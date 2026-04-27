@@ -11,5 +11,5 @@ export const axiosInstance = axios.create({
   // deployed endpoint reference
   // baseURL: "http://localhost:3004/api/",
   // Deployed version of EVANGADI-FOURM-BACK END
-  baseURL: "https://evangadi-forum-back-end-abd.onrender.com/api"
+  baseURL: "https://kewani-evangadi-forum.onrender.com/api"
 });
