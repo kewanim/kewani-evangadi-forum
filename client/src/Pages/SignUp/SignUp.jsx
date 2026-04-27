@@ -117,10 +117,10 @@ function Signup({ onSwitch }) {
           setError("An error occurred during login. Please try again.");
         }
       } else {
-        setError(response.data.Msg); 
+        setError(response.data.msg || "Error submitting the form. Please try again.");
         await Swal.fire({
           title: "Error",
-          text: error || "Error submitting the form. Please try again.",
+          text: response.data.msg || "Error submitting the form. Please try again.",
           icon: "error",
           confirmButtonText: "OK",
         });
@@ -128,13 +128,13 @@ function Signup({ onSwitch }) {
       }
     } catch (err) {
       setError(
-        err.response?.data?.Msg ||
-          "Error submitting the form. Please try again." + err
+        err.response?.data?.msg ||
+          "Error submitting the form. Please try again."
       );
       await Swal.fire({
         title: "Error",
         text:
-          err.response?.data?.Msg ||
+          err.response?.data?.msg ||
           "Error submitting the form. Please try again.",
         icon: "error",
         confirmButtonText: "OK",
