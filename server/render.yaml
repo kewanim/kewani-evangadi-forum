@@ -5,13 +5,17 @@ services:
     buildCommand: npm install
     startCommand: node app.js
     envVars:
-      - key: DB_HOST
+      - key: FIREBASE_API_KEY
         sync: false
-      - key: DB_USER
+      - key: FIREBASE_AUTH_DOMAIN
         sync: false
-      - key: DB_PASSWORD
+      - key: FIREBASE_PROJECT_ID
         sync: false
-      - key: DB_NAME
+      - key: FIREBASE_STORAGE_BUCKET
+        sync: false
+      - key: FIREBASE_MESSAGING_SENDER_ID
+        sync: false
+      - key: FIREBASE_APP_ID
         sync: false
       - key: JWT_SECRET
         sync: false
