@@ -19,6 +19,14 @@ function Signup({ onSwitch }) {
     password: "",
   });
 
+  const [passwordFocused, setPasswordFocused] = useState(false);
+
+  const passwordRules = [
+    { label: "At least 8 characters", test: (p) => p.length >= 8 },
+    { label: "At least one letter", test: (p) => /[A-Za-z]/.test(p) },
+    { label: "At least one number", test: (p) => /[0-9]/.test(p) },
+  ];
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({
@@ -61,6 +69,16 @@ function Signup({ onSwitch }) {
       return await Swal.fire({
         title: "Error",
         text: "Please enter a valid first, last and username.  Names should contain only letters and include at least two characters",
+        icon: "error",
+        confirmButtonText: "OK",
+      });
+    }
+
+    const failedRules = passwordRules.filter(r => !r.test(formData.password));
+    if (failedRules.length > 0) {
+      return await Swal.fire({
+        title: "Weak Password",
+        text: "Password must meet all requirements: " + failedRules.map(r => r.label).join(", "),
         icon: "error",
         confirmButtonText: "OK",
       });
@@ -195,11 +213,12 @@ function Signup({ onSwitch }) {
         />
         <div className={classes.passwordinput}>
           <input
-            type={showPassword ? "text" : "password"} // Toggle between text and password
+            type={showPassword ? "text" : "password"}
             name="password"
             placeholder="Password"
             value={formData.password}
             onChange={handleChange}
+            onFocus={() => setPasswordFocused(true)}
             required
           />
           <button
@@ -209,8 +228,20 @@ function Signup({ onSwitch }) {
           >
             {showPassword ? "🙉" : "🙈"}
           </button>
-        
         </div>
+        {passwordFocused && (
+          <ul className={classes.passwordRules}>
+            {passwordRules.map((rule) => {
+              const passed = rule.test(formData.password);
+              return (
+                <li key={rule.label} className={passed ? classes.rulePassed : classes.ruleFailed}>
+                  <span className={classes.ruleIcon}>{passed ? "✓" : "✗"}</span>
+                  {rule.label}
+                </li>
+              );
+            })}
+          </ul>
+        )}
         <button type="submit" className={classes.submitbtn}>
           Agree and Join
         </button>
