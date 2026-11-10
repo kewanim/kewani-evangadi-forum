@@ -16,10 +16,13 @@ async function register(req, res) {
   try {
     // Check if user already exists
     const usersRef = collection(db, "users");
-    const userQuery = query(usersRef, where("username", "==", username), where("email", "==", email));
-    const existingUsers = await getDocs(userQuery);
+    // Username and email must each be unique on their own
+    const [sameUsername, sameEmail] = await Promise.all([
+      getDocs(query(usersRef, where("username", "==", username))),
+      getDocs(query(usersRef, where("email", "==", email))),
+    ]);
 
-    if (!existingUsers.empty) {
+    if (!sameUsername.empty || !sameEmail.empty) {
       return res.status(StatusCodes.CONFLICT).json({ msg: "User already registered." });
     }
 
@@ -99,4 +102,4 @@ function checkUser(req, res) {
   return res.status(StatusCodes.OK).json({ username, email });
 }
 
-module.exports = { register, login, checkUser };
+module.exports = { register, login, checkUser };

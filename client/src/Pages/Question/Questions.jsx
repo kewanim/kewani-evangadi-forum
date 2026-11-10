@@ -17,7 +17,7 @@ function Question() {
   // Fetch questions from API
   useEffect(() => {
     setLoading(true);
-    axiosInstance.get("/question").then((res) => {
+    axiosInstance.get("/questions").then((res) => {
       setQuestions(res.data.message); // Set questions from API response
       setLoading(false);
     });
