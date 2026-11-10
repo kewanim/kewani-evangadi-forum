@@ -1,39 +1,32 @@
-import  { useContext, useRef } from "react";
+import { useRef } from "react";
 import classes from "./askQuestion.module.css";
 import { axiosInstance } from "../../../utility/axios";
 import { Link, useNavigate } from "react-router-dom";
 import Layout from "../../../Layout/Layout.jsx";
-import { UserState } from "../../../App.jsx";
 // this is imported for bootstrap sweet alert
 import Swal from "sweetalert2";
 
 function AskQuestion() {
   const navigate = useNavigate();
-  const { user } = useContext(UserState);
 
   // const navigate = useNavigate();
   const titleDom = useRef();
   const descriptionDom = useRef();
-  const userId = user?.userid;
-  console.log(user);
 
   async function handleSubmit(e) {
     e.preventDefault();
     const title = titleDom.current.value;
     const description = descriptionDom.current.value; 
-    const userid = userId;
     const tag = "General";
 
     try {
       // Make a POST request to your server to create a new question
-      const response = await axiosInstance.post("/question", {
-        userid,
+      const response = await axiosInstance.post("/questions", {
         title,
         description,
         tag,
       });
       if (response.status === 201) {
-        console.log("Question created successfully");
         await Swal.fire({
           title: "Success!",
           text: "Question created successfully!",

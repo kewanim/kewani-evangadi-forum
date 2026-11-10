@@ -1,4 +1,4 @@
-import  { useContext, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { axiosInstance } from "../../utility/axios.js";
 import Layout from "../../Layout/Layout.jsx";
@@ -7,15 +7,12 @@ import { MdAccountCircle } from "react-icons/md";
 import { FaClipboardQuestion } from "react-icons/fa6";
 import { MdOutlineQuestionAnswer } from "react-icons/md";
 import moment from "moment";
-import { UserState } from "../../App.jsx";
 import { LuCalendarClock } from "react-icons/lu";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 
 function QuestionAndAnswer() {
   const [questionDetails, setQuestionDetails] = useState({});
-  const { user } = useContext(UserState);
-  const userId = user?.userid;
   const { questionId } = useParams();
   const [loading, setLoading] = useState(true);
   const [expandedAnswer, setExpandedAnswer] = useState(null); // State to track expanded answers
@@ -25,7 +22,7 @@ function QuestionAndAnswer() {
 
   // Fetch the question details
   useEffect(() => {
-    axiosInstance.get(`/question/${questionId}`).then((res) => {
+    axiosInstance.get(`/questions/${questionId}`).then((res) => {
       setQuestionDetails(res.data);
       setLoading(false); // Set loading false after fetching
     });
@@ -34,8 +31,7 @@ function QuestionAndAnswer() {
   // Post a new answer to the question
   async function handlePostAnswer(e) {
     e.preventDefault();
-    const response = await axiosInstance.post("/answer", {
-      userid: userId,
+    const response = await axiosInstance.post("/answers", {
       answer: answerInput.current.value,
       questionid: questionId,
     });
