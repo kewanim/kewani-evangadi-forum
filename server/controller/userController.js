@@ -1,5 +1,5 @@
 const { getFirestore, doc, setDoc, getDoc, query, where, getDocs, collection } = require("firebase/firestore");
-const bcrypt = require("bcrypt");
+const bcrypt = require("bcryptjs");
 const { StatusCodes } = require("http-status-codes");
 const jwt = require("jsonwebtoken");
 const db = require("../db/dbConfig"); // Firestore db instance
