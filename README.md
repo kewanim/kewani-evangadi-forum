@@ -4,7 +4,7 @@ A full-stack Q&A web application where users can ask questions, post answers, an
 
 > **Project history:** this began as a 10-person team capstone at Evangadi Networks (Jul–Dec 2024), originally on MySQL. In April 2026 I rebuilt and redeployed it on my own, directing AI tools: moved the data layer to Firestore, redeployed the API on Render and the frontend on Netlify, and then fixed security and API-contract issues (see the changelog below).
 
-**Live Demo:** [evangadiforump.netlify.app](https://evangadiforump.netlify.app) &nbsp;·&nbsp; **API:** [kewani-evangadi-forum.onrender.com](https://kewani-evangadi-forum.onrender.com)
+**Live Demo:** [evangadiforump.netlify.app](https://evangadiforump.netlify.app) &nbsp;·&nbsp; **API:** [kewani-evangadi-api.vercel.app](https://kewani-evangadi-api.vercel.app)
 
 ---
 
