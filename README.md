@@ -2,7 +2,7 @@
 
 A full-stack Q&A web application where users can ask questions, post answers, and browse community knowledge — with a React frontend and an Express/Node.js backend.
 
-> **Project history:** this began as a 10-person team capstone at Evangadi Networks (Jul–Dec 2024), originally on MySQL. In April 2026 I rebuilt and redeployed it on my own, directing AI tools: moved the data layer to Firestore, redeployed the API on Render and the frontend on Netlify, and then fixed security and API-contract issues (see the changelog below).
+> **Project history:** this began as a 10-person team capstone at Evangadi Networks (Jul–Dec 2024), originally on MySQL. In April 2026 I rebuilt and redeployed it on my own, directing AI tools: moved the data layer to Firestore, redeployed the API (now on Vercel) and the frontend on Netlify, and then fixed security and API-contract issues (see the changelog below).
 
 **Live Demo:** [evangadiforump.netlify.app](https://evangadiforump.netlify.app) &nbsp;·&nbsp; **API:** [kewani-evangadi-api.vercel.app](https://kewani-evangadi-api.vercel.app)
 
@@ -26,7 +26,7 @@ A full-stack Q&A web application where users can ask questions, post answers, an
 | Database | Google Firestore |
 | Auth | JWT (JSON Web Tokens), bcrypt |
 | Frontend Hosting | Netlify |
-| Backend Hosting | Render |
+| Backend Hosting | Vercel (serverless Express) |
 
 ## Project Structure
 
@@ -79,7 +79,7 @@ JWT_SECRET=
 ## Deployment
 
 - **Frontend** auto-deploys to Netlify on every push to `main`
-- **Backend** auto-deploys to Render on every push to `main`
+- **Backend** auto-deploys to Vercel on every push to `main`
 
 ---
 
