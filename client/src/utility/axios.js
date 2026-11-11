@@ -6,7 +6,7 @@ export const TOKEN_KEY = "EV-Forum-token-G3-Jun2024";
 // Set VITE_API_URL in client/.env for local development, e.g. http://localhost:3004/api
 const API_URL =
   import.meta.env.VITE_API_URL ||
-  "https://kewani-evangadi-forum.onrender.com/api";
+  "https://kewani-evangadi-api.vercel.app/api";
 
 export const axiosInstance = axios.create({ baseURL: API_URL });
 
